@@ -1,0 +1,24 @@
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+metadata:
+  name: mediator-EKS
+  region: us-west-1
+  version: "1.29"
+vpc:
+  id: vpc-013374c7b0fe42d99
+  subnets:
+    public:
+      us-west-1a:
+        id: subnet-09a46e3f35b62ed3f
+      us-west-2a:
+        id: subnet-07bc974bab7a460cb
+    private:
+      us-west-1a:
+        id: subnet-0618e18d4c2770ef0
+      us-west-2a:
+        id: subnet-02833b27d2dc93680
+nodeGroups:
+  - name: mediator-eks-nodegroup
+    instanceType: t3.large
+    desiredCapacity: 2
+    privateNetworking: true

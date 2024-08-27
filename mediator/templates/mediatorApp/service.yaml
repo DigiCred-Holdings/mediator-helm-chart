@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mediator
+  labels:
+    app: mediator
+spec:
+  selector:
+    app: mediator
+  type: {{ .Values.mediator.service.type }}
+  ports:
+    - port: {{ .Values.mediator.service.port }}
+      targetPort: {{ .Values.mediator.service.targetPort }}
+      protocol: TCP
+      name: http

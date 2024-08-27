@@ -1,0 +1,20 @@
+mediator:
+  image: 
+    repository: ghcr.io/honeymodi55/credo-mediator
+    tag: test.1.0
+    pullPolicy: Always
+  service:
+    type: ClusterIP
+    port: 3002
+    targetPort: 3002 
+  config:
+    AGENT_LABEL: "My Credo Mediator Agent Server"
+    WALLET_NAME: "credo_mediator_wallet_server" 
+    ADDRESS: "mediator-kubernetes.digicred.services" 
+    PORT: "3002"
+    
+rds:
+  host: "mediator-database-1.cluster-ceuu7muzv13a.us-west-1.rds.amazonaws.com"
+  port: "5432"
+  databases:
+    mediatordb: "credo_mediator_wallet_server_1" 
