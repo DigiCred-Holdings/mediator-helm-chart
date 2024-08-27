@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mediator
+  labels:
+    app: mediator
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: mediator
+  template:
+    metadata:
+      labels:
+        app: mediator
+    spec:
+      containers:
+        - name: mediator
+          image: "{{ .Values.mediator.image.repository }}:{{ .Values.mediator.image.tag }}"
+          imagePullPolicy: "{{ .Values.mediator.image.pullPolicy }}"
+          ports:
+            - containerPort: {{ .Values.mediator.service.targetPort }}
+              name: http
+          envFrom:
+          - configMapRef:
+              name: mediator-config
+          - secretRef:
+              name: mediator-secrets

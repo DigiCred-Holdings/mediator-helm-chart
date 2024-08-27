@@ -1,0 +1,13 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: mediator-tls
+  namespace: credo-mediator
+spec:
+  secretName: mediator-tls
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  commonName: mediator-kubernetes.digicred.services
+  dnsNames:
+  - mediator-kubernetes.digicred.services
